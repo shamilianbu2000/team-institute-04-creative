@@ -40,3 +40,12 @@
     d.addEventListener('mouseleave',function(){cur.classList.remove('on')});
   }
 })();
+
+/* hide floating WhatsApp while hero buttons are on screen (small screens) */
+(function(){
+  var wa=document.querySelector('.wa'),h=document.querySelector('.hero-actions');
+  if(!wa||!h||!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(es){
+    wa.classList.toggle('wa-hide',es[0].isIntersecting&&window.innerWidth<=900);
+  }).observe(h);
+})();
